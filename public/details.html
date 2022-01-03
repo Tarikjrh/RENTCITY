@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RENTCITY</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" href="icons/logo.svg" type="image/x-icon" />
+  </head>
+
+  <body class="dark">
+    <nav class="navbarV" id="navbarV"></nav>
+    <div class="" id="backdrop"></div>
+    <main class="px-0">
+      <!-- Modal -->
+      <div
+        class="modal fade"
+        id="authModal"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true"
+      >
+        <div
+          class="modal-dialog modal-dialog-centered"
+          role="document"
+          id="modalParent"
+        >
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="modalTitle"></h5>
+              <button
+                type="button"
+                class="close text-white"
+                data-dismiss="modal"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body" id="modalInfo"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container px-0">
+        <div class="container">
+          <div class="row">
+            <div id="placeName" class="col-10"></div>
+            <div id="facilityIcon" class="col-2 text-right"></div>
+            <div id="showNav" class="ml-auto">
+              <lord-icon
+                src="https://cdn.lordicon.com/phtfmmnb.json"
+                trigger="click"
+                colors="primary:#d4d1fa,secondary:#08a88a"
+                style="width: 50px; height: 50px"
+                id="burger"
+              >
+              </lord-icon>
+            </div>
+          </div>
+        </div>
+
+        <div class="container">
+          <div class="container">
+            <div class="row" id="cards"></div>
+          </div>
+        </div>
+
+        <div class="container pt-4">
+          <h2 id="paymentsTitle" class=""></h2>
+
+          <div class="container">
+            <div id="payments" class="row"></div>
+            <div id="paymentsIndicator"></div>
+          </div>
+        </div>
+
+        <div class="container pt-4">
+          <h2 id="peopleTitle" class=""></h2>
+          <!-- <h5 id="peopleTitle" class="sectiontitle" class="card-title title py-1 col-10 py-1 pl-sm-0 pl-md-5 "></h5> -->
+          <div class="container">
+            <div id="people" class="row"></div>
+            <div id="peopleIndicator"></div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.15.1/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/7.15.1/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.15.1/firebase-storage.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.15.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.15.1/firebase-auth.js"></script>
+
+    <script>
+      // Your web app's Firebase configuration
+      // Your web app's Firebase configuration
+      var firebaseConfig = {
+        apiKey: "AIzaSyDnpCXJMD1YrIUaSmRFlTCfLk3f41vwvYw",
+        authDomain: "rentcity-60d87.firebaseapp.com",
+        projectId: "rentcity-60d87",
+        storageBucket: "rentcity-60d87.appspot.com",
+        messagingSenderId: "996561583647",
+        appId: "1:996561583647:web:2ed56defe9c4d9a9ee5f2a",
+        measurementId: "G-X6FWYPFBJY",
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+      // firebase.analytics();
+      const auth = firebase.auth();
+      const st = firebase.storage();
+
+      const db = firebase.firestore();
+    </script>
+    <script src="nav.js"></script>
+    <script src="shortenhtml.js"></script>
+    <script src="newapp.js" defer></script>
+    <script src="people.js"></script>
+    <script src="payments.js"></script>
+    <script src="auth.js"></script>
+
+    <script src="https://cdn.lordicon.com/libs/mssddfmo/lord-icon-2.1.0.js"></script>
+
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

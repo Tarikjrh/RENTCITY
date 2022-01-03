@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RENTCITY</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+      crossorigin="anonymous"
+    />
+
+    <link rel="stylesheet" href="style.css" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,800;1,700&family=Roboto:wght@300;400;700;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="icon" href="icons/logo.svg" type="image/x-icon" />
+  </head>
+
+  <body class="dark">
+    <nav class="navbarV" id="navbarV"></nav>
+    <div class="" id="backdrop"></div>
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="authModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalCenterTitle"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modalTitle"></h5>
+            <button
+              type="button"
+              class="close text-white"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body" id="modalInfo"></div>
+        </div>
+      </div>
+    </div>
+
+    <main class="px-0">
+      <div class="container px-0">
+        <div class="container">
+          <div class="row">
+            <div class="col-10">
+              <h1 class="title logo-text-main">
+                <span>
+                  <img src="icons/logo.svg" width="35px" height="35px" alt="" />
+                </span>
+                RENTCITY
+              </h1>
+            </div>
+
+            <div class="col-2 pl-0">
+              <div id="showNav" class="py-auto">
+				<button class="menu" onclick="this.classList.toggle('opened');this.setAttribute('aria-expanded', this.classList.contains('opened'))" aria-label="Main Menu">
+					<svg width="50" height="50" viewBox="0 0 100 100">
+					  <path class="line line1" d="M 20,29.000046 H 80.000231 C 80.000231,29.000046 94.498839,28.817352 94.532987,66.711331 94.543142,77.980673 90.966081,81.670246 85.259173,81.668997 79.552261,81.667751 75.000211,74.999942 75.000211,74.999942 L 25.000021,25.000058" />
+					  <path class="line line2" d="M 20,50 H 80" />
+					  <path class="line line3" d="M 20,70.999954 H 80.000231 C 80.000231,70.999954 94.498839,71.182648 94.532987,33.288669 94.543142,22.019327 90.966081,18.329754 85.259173,18.331003 79.552261,18.332249 75.000211,25.000058 75.000211,25.000058 L 25.000021,74.999942" />
+					</svg>
+				  </button>
+              </div>
+              <h1 id="uName" class="ml-auto pr-2"></h1>
+            </div>
+          </div>
+        </div>
+
+        <div class="container mt-5">
+          <div class="container">
+            <div class="row" id="cards">
+              <div class="row home-info">
+								<div class="col-sm-4 text-center mb-5 mb-md-0">
+									<img src="icons/logoColor.svg" alt=""  height="320"/>
+								</div>
+								<div class="col-sm-1"></div>
+								<div class="col-md-7 col-sm-12">
+
+									<div class="">
+										<h1 class="header1">
+											<span style="color: #3DB39E;">RENTCITY</span> allows you keep track of who paid rent in your building
+										</h1>
+									</div>
+									<div class="">
+										<h2 class="subheader">access your account to start</h1>
+									</div>
+									<div class="text-center text-md-left mt-5">
+										<button class="btn btn-home " id="signUpBtn">Sign up</button>
+										<button class="btn btn-home ml-4 ml-md-5" id="logInBtn" style="background-color:#0EADC3">Log in</button>
+									</div>
+								</div>
+							</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="text-center" id="noIncome" style="display: none">
+          <p class="">
+            No incomes <br />
+            added
+            <br />
+            <span
+              ><button class="btn" id="newIncome" style="background-color: #3DB39E; color: white;">Add facility</button></span
+            >
+          </p>
+        </div>
+      </div>
+    </main>
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.15.1/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/7.15.1/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.15.1/firebase-storage.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.15.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.15.1/firebase-auth.js"></script>
+
+    <script>
+      // Your web app's Firebase configuration
+
+      var firebaseConfig = {
+        apiKey: "AIzaSyDnpCXJMD1YrIUaSmRFlTCfLk3f41vwvYw",
+        authDomain: "rentcity-60d87.firebaseapp.com",
+        projectId: "rentcity-60d87",
+        storageBucket: "rentcity-60d87.appspot.com",
+        messagingSenderId: "996561583647",
+        appId: "1:996561583647:web:2ed56defe9c4d9a9ee5f2a",
+        measurementId: "G-X6FWYPFBJY",
+      };
+
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+      const auth = firebase.auth();
+      const st = firebase.storage();
+      const db = firebase.firestore();
+
+      firebase.analytics();
+    </script>
+    <script src="nav.js"></script>
+	<script src="auth.js"></script>
+    <script src="app.js"></script>
+   
+    <!-- <script src="ui.js"></script> -->
+    <script src="shortenhtml.js"></script>
+
+    <script
+      src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+      crossorigin="anonymous"
+    ></script>
+    <!-- icons  -->
+    <script src="https://cdn.lordicon.com/libs/mssddfmo/lord-icon-2.1.0.js"></script>
+  </body>
+</html>
